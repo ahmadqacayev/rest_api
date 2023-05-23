@@ -14,7 +14,8 @@ class Task extends Model
 
     protected $fillable = [
         'title',
-        'is_done'
+        'is_done',
+        'project_id'
     ];
     protected $casts = [
         'is_done' => 'boolean'
@@ -23,6 +24,10 @@ class Task extends Model
 
     public function creator(): BelongsTo{
         return $this->belongsTo(User::class, 'creator_id');
+    }
+
+    public function project(): BelongsTo{
+        return $this->belongsTo(Project::class);
     }
 
     protected static  function booted( ): void{
