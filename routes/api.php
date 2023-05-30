@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\MembersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,4 +29,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware('auth:sanctum')->group(function (){
     Route::apiResource('tasks', TaskController::class);
     Route::apiResource('projects', ProjectController::class);
+    Route::apiResource('projects.members', MembersController::class)->only(['index', 'store', 'destroy']);
 });
